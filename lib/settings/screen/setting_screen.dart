@@ -10,8 +10,8 @@ class SettingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final firstRowHeight=100 as double;
-    var firstRowWidth=MediaQuery.of(context).size.width;
+    final Size size = MediaQuery.of(context).size;
+    final aspect=size.height *size.width*0.0001;
     return ListView(
       children: [Column(
         children: <Widget>[
@@ -20,11 +20,11 @@ class SettingScreen extends StatelessWidget {
             alignment: Alignment.center,
             children: <Widget>[
               SizedBox(
-                  height: 200,
-                  width: MediaQuery.of(context).size.width,
+                  height: size.height * 0.300,
+                  width: size.width,
                   child: Container(
                     child: Image(
-                        height: MediaQuery.of(context).size.height / 3,
+                        height: size.height / 3,
                         fit: BoxFit.cover,
                         image: AssetImage('settings/mountain.jpg')),
                   )),
@@ -34,7 +34,7 @@ class SettingScreen extends StatelessWidget {
                 child: Row(
                   children: [
                     CircleAvatar(
-                      radius: 80,
+                      radius: aspect,
                       backgroundColor: Colors.white,
                       child: Container(
                         clipBehavior: Clip.antiAlias,
@@ -50,8 +50,8 @@ class SettingScreen extends StatelessWidget {
                       child: SizedBox(
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                        Text('Little Angels',style:TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold)), 
-                                        Text('Hattiban, Lalitpur', style:TextStyle(color: Colors.white,fontSize: 20,fontWeight: FontWeight.bold))],),
+                                        Text('Little Angels',style:TextStyle(color: Colors.white,fontSize: aspect* 0.5,fontWeight: FontWeight.bold)), 
+                                        Text('Hattiban, Lalitpur', style:TextStyle(color: Colors.white,fontSize: aspect* 0.45,fontWeight: FontWeight.bold))],),
                                       ),
                     ),
                   ],
@@ -70,22 +70,24 @@ class SettingScreen extends StatelessWidget {
             child: Row(
               children: [
                 SettingBoxButton(
-                height: 150,
-                width: firstRowWidth *0.5,
-                child: Column(
-                  crossAxisAlignment:CrossAxisAlignment.start,children: [
-                PaddedText(padd: 15.0, text: 'Details',
-                style: TextStyle(fontWeight: FontWeight.bold),),
-                PaddedText(padd: 15.0, text: 'Username: Abishek Khanal',),
-                PaddedText(padd: 15.0, text: 'Email: Abishek Khanal',),
-                PaddedText(padd: 15.0, text: 'Contact no.: 9837544736'),
-                ],),
+                height: size.height * 0.250,
+                width: size.width * 0.500,
+                child: ListView(
+                  children:[
+                  PaddedText(padd: 10.0, text: 'Details',
+                  style: TextStyle(fontWeight: FontWeight.bold),),
+                    BulletList(strings: [
+                  'Username: Abishek Khanal',
+                  'Email: Abishek Khanal',
+                  'Contact no.: 9837544736'
+                    ],)
+                  ],
+                ),
                 ),
                 SettingBoxButton(
-                height: 150,
-                width: firstRowWidth*0.2,
-                child: Column(
-                  crossAxisAlignment:CrossAxisAlignment.start,
+                height: size.height * 0.250,
+                width: size.width*0.200,
+                child: ListView(
                   children: [
                 PaddedText(padd: 15.0, 
                 text: 'For More',
@@ -129,26 +131,26 @@ class SettingScreen extends StatelessWidget {
               children: [
                 SettingIconBoxButton(
                   icon:Icons.edit,
-                  height:firstRowHeight,
-                  width: 200,
+                  height:size.height * 0.150,
+                  width: size.width * 0.200,
                   text: 'Update Profile',
                   ),
                   SettingIconBoxButton(
                   icon:Icons.settings,
-                  height:firstRowHeight,
+                  height:size.height * 0.150,
                   width: 200,
                   text: 'Settings',
                   ),
                   SettingIconBoxButton(
                   icon:Icons.privacy_tip,
-                  height:firstRowHeight,
+                  height:size.height * 0.150,
                   width: 200,
                   text: 'Privacy',
                   ),
                   SettingIconBoxButton(
                   icon:Icons.question_mark_rounded,
-                  height:firstRowHeight,
-                  width: 200,
+                  height:size.height * 0.150,
+                  width: size.width *0.200,
                   text: 'About Us',
                   ),
               ],

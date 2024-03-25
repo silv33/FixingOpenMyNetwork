@@ -8,7 +8,7 @@ class BulletList extends StatelessWidget {
   BulletList(
     {
     required this.strings,
-    required this.bullet,
+    this.bullet,
     this.padding,
     });
 
@@ -25,7 +25,7 @@ class BulletList extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Icon(bullet ?? Icons.circle_outlined),
+                Icon(bullet ?? null),
                 SizedBox(
                   width: 5,
                 ),
